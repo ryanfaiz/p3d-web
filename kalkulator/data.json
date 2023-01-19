@@ -1,0 +1,18 @@
+{
+    "low_food" : [
+        {"name":"Semangka", "cal":32},
+        {"name":"Telur Rebus", "cal":71},
+        {"name":"Sup Tomat", "cal":76},
+        {"name":"Pisang", "cal":89},
+        {"name":"Jagung Rebus", "cal":90},
+        {"name":"Talas Rebus", "cal":98}
+    ],
+    "high_food" : [
+        {"name":"Telur Ceplok", "cal":201},
+        {"name":"Nasi Palekko", "cal":210},
+        {"name":"Ketan Putih", "cal":217},
+        {"name":"Es Buah Matoa", "cal":222},
+        {"name":"Bubur Kacang Hijau", "cal":252},
+        {"name":"Soto Betawi", "cal":477}
+    ]
+}

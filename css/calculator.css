@@ -1,0 +1,115 @@
+* {
+    margin: 0px;
+    font-family: Arial;
+  }
+  body {
+    background-color: #f4ead5;
+  }
+  a {
+    color: #e94e77;
+    text-align: right;
+  }
+  .content {
+    display: block;
+  }
+  nav {
+    background-color: #e94e77;
+    width: 100%;
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    min-width: 372px;
+    color: #f4ead5;
+  }
+  .nav-element {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 25px;
+  }
+  input {
+    width: 100%;
+    border-radius: 5px;
+    height: 36px;
+    background-color: #f4ead5;
+    font-size: medium;
+  }
+  select {
+    width: 100%;
+    border-radius: 5px;
+    height: 36px;
+    background-color: #f4ead5;
+    font-size: medium;
+  }
+  .content {
+    display: flex;
+    justify-content: center;
+  }
+  .form-container {
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    min-width: 300px;
+    max-width: 420px;
+    background: #c6e5d9;
+    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    margin: 15px;
+    padding: 15px;
+    padding-right: 35px;
+  }
+  .form-container p {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #e94e77;
+    font-size: x-large;
+  }
+  button {
+    cursor: pointer;
+    min-width: 120px;
+    width: auto;
+    height: 48px;
+    background: #d68189;
+    border-radius: 10px;
+    color: #f4ead5;
+    font-size: x-large;
+  }
+  .div-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .result {
+    display: block;
+    background-color: #c6e5d9;
+    margin: 15px;
+    width: 300px;
+    min-width: 300px;
+    height: min-content;
+    padding: 15px;
+    padding-right: 35px;
+    padding-bottom: 25px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+  }
+  .form-result {
+    display: block;
+  }
+  @media only screen and (min-width: 768px) {
+    .form-result {
+      display: flex;
+    }
+    .form-container {
+      position: static;
+      z-index: 0;
+      max-width: 400px;
+      padding-bottom: 25px;
+    }
+  }
+  @media only screen and (min-width: 1150px) {
+    .form-result {
+      display: flex;
+    }
+  }
+  

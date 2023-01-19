@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    font-family: Arial;
+}
+
+body{
+    background-color: #F4EAD5;
+}
+
+nav{
+    background-color: #E94E77;
+    width: 100%;
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    min-width: 372px;
+    color: #F4EAD5;
+}
+
+.nav-element{
+    margin-top:auto;
+    margin-bottom:auto;
+    margin-left: 25px;
+}
+article{
+    padding: 20px;
+    max-width: 720px;
+}
+
+article p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+h2{
+    color: #E94E77;
+}

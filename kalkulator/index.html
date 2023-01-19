@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aplikasi P3D</title>
+    <link rel="stylesheet" href="/css/calculator.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <nav>
+      <a href="/"><img src="/favicon.webp" class="nav-element" /></a>
+      <h1 class="nav-element">Pedoman Diabetes</h1>
+    </nav>
+    <div class="content">
+      <div class="form-result">
+        <form action="#" class="form-container">
+            <p>Jenis Kelamin</p>
+
+            <select id="sex" onchange="gender(this.options[this.selectedIndex].value)">
+              <option value="man">Laki-Laki</option>
+              <option value="woman">Perempuan</option>
+            </select>
+
+            <div id="pregnant-condition" class="pregnant-container" style="display:none">
+              <p>Kondisi Kehamilan</p>
+              <select id="pregnant" onchange="pregnantdiv(this.options[this.selectedIndex].value)">
+                <option value="pregnant-n">Tidak</option>
+                <option value="pregnant-y">Iya</option>
+              </select>
+            </div>
+
+            <div id="pregnant-age" class="pregnant-container" style="display:none">
+              <p>Usia Kehamilan (bulan)</p>
+              <input id="usia_kehamilan" type="number" min="0" max="11" maxlength="2" required/>
+            </div>
+
+            <p>Umur (tahun)</p>
+            <input id="age" type="number" maxlength="2" min="10" max="100" required/>
+
+            <p>Berat Badan (kg)</p>
+            <input id="bb" type="number" maxlength="3" min="20" max="200" required />
+
+            <p>Tinggi Badan (cm)</p>
+            <input id="tb" type="number" maxlength="3" min="100" max="250" required/>
+
+            <p>Tipe Pemeriksaan</p>
+            <select id="tipe_pemeriksaan">
+              <option value="gds">Gula Darah Sewaktu</option>
+              <option value="gdp">Gula Darah Puasa</option>
+            </select>
+
+            <p>Kadar Gula Darah (mg/dL)</p>
+            <input id="kgd" type="number" maxlength="3" min="50" max="500" required/>
+            <br /><br />
+
+            <div id="hitung-div" class="div-button">
+              <button id="hitung" onclick="calculate()">Hitung</button>
+            </div>
+
+            <div id="ulangi-div" class="div-button" style="display:none">
+              <a href=""><button>Ulangi</button></a>
+            </div>
+
+        </form>
+        <div class="result">
+          <h2>Hasil</h2>
+          <p id="hasil"></p>
+          <br />
+          <h2>Kebutuhan Kalori</h2>
+          <p id="tkk"></p>
+          <br />
+          <h2>Rekomendasi Makanan</h2>
+          <p id="food"></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      var foodlist = document.getElementById("food");
+      function gender(a){document.getElementById("pregnant-condition").style.display="woman"==a?"block":"none"}
+      function pregnantdiv(a){document.getElementById("pregnant-age").style.display="pregnant-y"==a?"block":"none"}
+
+      function calculate() {
+          // Variable
+          var kondisi;
+          var bbr;
+          var sex=document.getElementById("sex").value;
+          var age=document.getElementById("age").value;
+          var bb=document.getElementById("bb").value;
+          var tb=document.getElementById("tb").value;
+          var tp=document.getElementById("tipe_pemeriksaan").value;
+          var kgd=document.getElementById("kgd").value;
+          var low_food = {"low_food" : [
+                  {"name":"Semangka", "cal":32},
+                  {"name":"Telur Rebus", "cal":71},
+                  {"name":"Sup Tomat", "cal":76},
+                  {"name":"Pisang", "cal":89},
+                  {"name":"Jagung Rebus", "cal":90},
+                  {"name":"Talas Rebus", "cal":98}
+              ]}
+
+          var high_food ={
+              "high_food" : [
+              {"name":"Telur Ceplok", "cal":201},
+              {"name":"Nasi Palekko", "cal":210},
+              {"name":"Ketan Putih", "cal":217},
+              {"name":"Es Buah Matoa", "cal":222},
+              {"name":"Bubur Kacang Hijau", "cal":252},
+              {"name":"Soto Betawi", "cal":477}]}
+
+          // Re-check null value
+          if ((sex == "") || (age == "") || (bb == "") || (tb == "") || (kgd == "")) {alert("Data Tidak Lengkap"); return;}
+          if(age >= 90){alert("Umur Tidak Valid"); return;}
+          if(20 >= bb >= 200){alert("Berat Badan Tidak Valid"); return;}
+          if(100 >= tb >= 250){alert("Tinggi Badan Tidak Valid"); return;}
+          if(20 >= kgd >= 300){alert("Kadar Gula Darah Tidak Valid"); return;}
+
+          tkk();
+
+          // Tingkat Kebutuhan Kalori
+          function tkk(){
+          if (sex === "woman") {
+              bbr = 66.5 + (13.7 * bb) + (5 * tb) - (6.8 * age);
+              hamil();
+          } else if (sex === "man") {
+              bbr = 665 + (9.6 * bb) + (1.8 * tb) - (4.7 * age);
+              tipe_diabetes();
+          }};
+
+          function hamil() {
+              var kondisi_kehamilan = document.getElementById("pregnant").value;
+              var usia_kehamilan = document.getElementById("usia_kehamilan").value;
+              if (kondisi_kehamilan = "pregnant-y") {
+                  if (usia_kehamilan < 4) {
+                      bbr += 100;
+                  } else if (usia_kehamilan < 7) {
+                      bbr += 200;
+                  } else if (usia_kehamilan < 10) {
+                      bbr += 300;
+                  } else if (usia_kehamilan == 10) {
+                      bbr += 400;
+                  }
+                  tipe_diabetes();
+              } else {tipe_diabetes();}
+
+          }
+
+          // Kategori Diabetes
+          function tipe_diabetes() {
+          if (tp = "gds") {
+              if (kgd < 200) {
+                  kondisi = "sehat";
+                  recom();
+              } else {
+                  kondisi = "diabetes";
+                  recom();}
+          } else if (tp = "gdp") {
+              if (kgd < 126) {
+                  kondisi = "sehat";
+                  recom();
+              } else {
+                  kondisi = "diabetes";
+                  recom();}
+          }}
+
+          // Rekomendasi
+          function recom() {
+
+              document.getElementById("tkk").innerHTML = Math.round(bbr) + " kalori/hari";
+              if (kondisi == "sehat") {
+                  document.getElementById("hasil").innerHTML = "Anda Sehat";
+                  low_food.low_food.forEach(function(element) {
+                  foodlist.insertAdjacentHTML( 'beforeend',"<p>" + element.name + " : " + element.cal + " kalori" +" </p>");});
+              } else if (kondisi == "diabetes") {
+                  document.getElementById("hasil").innerHTML = "Anda Sehat";
+                  high_food.high_food.forEach(function(element) {
+                  foodlist.insertAdjacentHTML( 'beforeend',"<p>" + element.name + " : " + element.cal + " kalori" +" </p>");});
+              }
+          }
+      } 
+    </script>
+  </body>
+</html>
