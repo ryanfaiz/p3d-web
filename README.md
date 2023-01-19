@@ -13,4 +13,5 @@ Aplikasi P3D adalah aplikasi yang dibuat untuk membantu para pengidap penyakit d
 - Christian Danu Adnan Nugroho
 - Defan Mahadhika Tambunan
 - Khariunisa Salsabila
+- Muhammad Rizky Saputra
 - Ryan Faiz Sanie
